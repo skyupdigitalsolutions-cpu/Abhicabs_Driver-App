@@ -39,9 +39,12 @@
       },
       "distribution": "internal"
     },
-    "production": {
+       "production": {
       "android": {
         "buildType": "app-bundle"
+      },
+      "ios": {
+        "image": "latest"
       },
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
