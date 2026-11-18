@@ -11,6 +11,10 @@
       },
       "ios": {
         "simulator": true
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+918096000182"
       }
     },
     "preview": {
@@ -39,7 +43,7 @@
       },
       "distribution": "internal"
     },
-       "production": {
+    "production": {
       "android": {
         "buildType": "app-bundle"
       },
@@ -61,7 +65,10 @@
         "EXPO_PUBLIC_SUPPORT_PHONE": "+918096000182"
       },
       "autoIncrement": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "image": "latest"
+      }
     }
   },
   "submit": {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * ScreenPlaceholder — centered icon + title + body + optional coming-soon list.
- * Used for Earnings, Trips, and any future stub screens.
+ * Used for Trips and any future stub screens.
  *
  * Props:
  *   Icon       LucideIcon

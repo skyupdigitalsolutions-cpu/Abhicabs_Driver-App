@@ -26,7 +26,7 @@ export function Logo({ variant = 'color', width = 200, style }) {
       source={SOURCES[variant]}
       style={[{ width, height: Math.round(width * RATIO[variant]) }, style]}
       resizeMode="contain"
-      accessibilitylabel="ABHI CABS"
+      accessibilityLabel="ABHI CABS"
     />
   );
 }

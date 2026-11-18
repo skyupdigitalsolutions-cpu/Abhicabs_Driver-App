@@ -10,7 +10,7 @@
  * Login screen doesn't match the build you expect, you're running a stale
  * APK and nothing else about the report is trustworthy yet.
  */
-export const BUILD_TAG = '2026.10.09-b21';
+export const BUILD_TAG = '2026.11.18-b24';
 
 // Short summary of what changed in this build, for the same reason.
-export const BUILD_NOTES = 'b21: build config — added production:apk EAS profile (production-signed APK); verified Play-ready config. Builds on b20 branding pass';
+export const BUILD_NOTES = 'b24: merged GitHub main with b22/b23 (Earnings removed, admin-added drivers skip verification, iOS 15.1 build config); API on AWS everywhere. Prev: b21: build config — added production:apk EAS profile (production-signed APK); verified Play-ready config. Builds on b20 branding pass';

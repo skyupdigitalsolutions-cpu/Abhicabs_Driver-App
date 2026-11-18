@@ -12,10 +12,9 @@ import { Alert, Pressable, StyleSheet, View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
-import { Home, ClipboardList, DollarSign, User, Bell } from 'lucide-react-native';
+import { Home, ClipboardList, User, Bell } from 'lucide-react-native';
 import { HomeScreen }                from '../screens/HomeScreen';
 import { TripsScreen }               from '../screens/TripsScreen';
-import { EarningsScreen }            from '../screens/EarningsScreen';
 import { ProfileScreen }             from '../screens/ProfileScreen';
 import { NotificationsScreen }       from '../screens/NotificationsScreen';
 import { RegisterVehicleScreen }     from '../screens/RegisterVehicleScreen';
@@ -34,7 +33,6 @@ const Stack = createNativeStackNavigator();
 const TAB_ICONS = {
   Home:     Home,
   Trips:    ClipboardList,
-  Earnings: DollarSign,
   Profile:  User,
 };
 
@@ -62,7 +60,7 @@ function TabsWithNotifications() {
 
   const isOnline = useSelector((s) => s.driverStatus.isOnline);
 
-  // Gate: until the driver goes online (from the Home tab), Trips, Earnings
+  // Gate: until the driver goes online (from the Home tab), Trips
   // and Profile are locked — tapping them shows a nudge back to Home instead
   // of navigating. Home itself is always reachable, since that's where the
   // Go Online control lives.
@@ -101,7 +99,6 @@ function TabsWithNotifications() {
           >
             <Tab.Screen name="Home"     component={HomeScreen} />
             <Tab.Screen name="Trips"    component={TripsScreen}    listeners={blockIfOffline('Trips')} />
-            <Tab.Screen name="Earnings" component={EarningsScreen} listeners={blockIfOffline('Earnings')} />
             {/* Profile intentionally NOT gated — it's the only place to Log
                 Out and to register/manage a vehicle, so locking it behind
                 "online" could trap an offline driver with no way out. */}

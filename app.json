@@ -69,7 +69,22 @@
       ],
       "expo-secure-store",
       "./plugins/withSceneLifecycle",
-      "./plugins/withStripAndroidPermissions"
-    ]
+      "./plugins/withStripAndroidPermissions",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      "./plugins/withIosDeploymentTarget"
+    ],
+    "owner": "skyup-digital-solutions-llp",
+    "extra": {
+      "eas": {
+        "projectId": "3b45a890-149f-4c61-ad4b-ddbe04c97ed9"
+      }
+    }
   }
 }

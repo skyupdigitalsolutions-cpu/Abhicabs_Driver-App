@@ -126,6 +126,10 @@ export async function initSession({ silent = false } = {}) {
   const user = me?.user ?? me;
   const kycStatus = driverData?.driver?.kycStatus ?? driverData?.onboarding?.kycStatus;
   const hasVehicle = !!driverData?.onboarding?.hasVehicle;
+  // Manually-added (admin-created) drivers skip the self-onboarding / KYC
+  // verification gate — they log in straight into the app. The backend marks
+  // them with onboarding.isTemporary.
+  const isTemporary = driverData?.onboarding?.isTemporary === true;
 
   // The "skip vehicle" flag only matters while there's no vehicle.
   let vehicleSkipped = false;
@@ -133,10 +137,7 @@ export async function initSession({ silent = false } = {}) {
     secureStorage.removeItem(VEHICLE_SKIPPED_KEY).catch(() => {});
   } else {
     // Preserve a skip chosen earlier in THIS session even if its background
-    // Keychain write hasn't landed yet — otherwise a refresh (e.g. on the
-    // Application-Pending screen) could read the flag as unset and bounce the
-    // driver back to Register Vehicle. Fall back to the persisted flag for a
-    // fresh app launch.
+    // write hasn't landed yet; fall back to the persisted flag otherwise.
     let stored = false;
     try { stored = (await secureStorage.getItem(VEHICLE_SKIPPED_KEY)) === '1'; } catch { stored = false; }
     vehicleSkipped = state.vehicleSkipped === true || stored;
@@ -147,7 +148,7 @@ export async function initSession({ silent = false } = {}) {
     status:       'authenticated',
     user,
     onboarding:   driverData?.onboarding ?? null,
-    driverStatus: kycStatus === 'VERIFIED' ? 'approved' : 'pending',
+    driverStatus: (kycStatus === 'VERIFIED' || isTemporary) ? 'approved' : 'pending',
     vehicleSkipped,
     error:        null,
   });
@@ -156,11 +157,8 @@ export async function initSession({ silent = false } = {}) {
 
 /** "I'll add a vehicle later" on RegisterVehicleScreen (onboarding only). */
 export async function skipVehicleRegistration() {
-  // Flip session state FIRST so Root() recomputes the onboarding step and the
-  // navigator remounts onto the next screen immediately. Persisting the flag is
-  // best-effort and must never gate the UI: SecureStore.setItemAsync is a native
-  // Keychain write that can be slow (or stall) on some devices, and awaiting it
-  // here used to hold up the state flip — which made "Skip for now" look dead.
+  // Flip session state FIRST so Root() advances immediately; persist in the
+  // background (SecureStore can be slow — awaiting it made Skip look dead).
   setState({ vehicleSkipped: true });
   secureStorage.setItem(VEHICLE_SKIPPED_KEY, '1').catch(() => { /* best-effort */ });
 }
