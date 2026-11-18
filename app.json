@@ -70,9 +70,12 @@
       "expo-secure-store",
       "./plugins/withSceneLifecycle",
       "./plugins/withStripAndroidPermissions",
-      [
+         [
         "expo-build-properties",
         {
+          "android": {
+            "minSdkVersion": 24
+          },
           "ios": {
             "deploymentTarget": "15.1"
           }
