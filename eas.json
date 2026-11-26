@@ -1,0 +1,76 @@
+{
+  "cli": {
+    "version": ">= 12.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+918045678901"
+      },
+      "distribution": "internal"
+    },
+    "preview:device": {
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "distribution": "internal"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+918045678901"
+      },
+      "distribution": "internal"
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+918045678901"
+      },
+      "autoIncrement": true,
+      "ios": {
+        "image": "latest"
+      }
+    },
+    "production:apk": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.abhicabs24x7.com/api/v1",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+918045678901"
+      },
+      "autoIncrement": true,
+      "distribution": "internal",
+      "ios": {
+        "image": "latest"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {},
+      "ios": {}
+    }
+  }
+}

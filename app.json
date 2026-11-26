@@ -1,0 +1,89 @@
+{
+  "expo": {
+    "name": "ABHI CABS Driver",
+    "slug": "abhicabs-driver-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#111111"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.abhicabs.driver",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow ABHI CABS Driver to use your location to show your position on the map and navigate to pickups.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow ABHI CABS Driver to use your location in the background to track your trip and share live location with passengers.",
+        "NSCameraUsageDescription": "Allow ABHI CABS Driver to access your camera to upload documents.",
+        "NSPhotoLibraryUsageDescription": "Allow ABHI CABS Driver to access your photo library to upload documents."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFC007"
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.CAMERA"
+      ],
+      "package": "com.abhicabs.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "REPLACE_WITH_ANDROID_GOOGLE_MAPS_API_KEY"
+        }
+      },
+      "blockedPermissions": [
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow ABHI CABS Driver to use your location.",
+          "isIosBackgroundLocationEnabled": false,
+          "locationWhenInUsePermission": "Allow ABHI CABS Driver to use your location to show your position on the map and navigate to pickups."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Allow ABHI CABS Driver to access your camera to upload documents.",
+          "microphonePermission": false,
+          "photosPermission": "Allow ABHI CABS Driver to access your photo library to upload documents."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#FFC107"
+        }
+      ],
+      "expo-secure-store",
+      "./plugins/withSceneLifecycle",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      "./plugins/withIosDeploymentTarget"
+    ],
+    "owner": "skyup-digital-solutions-llp",
+    "extra": {
+      "eas": {
+        "projectId": "3b45a890-149f-4c61-ad4b-ddbe04c97ed9"
+      }
+    }
+  }
+}
